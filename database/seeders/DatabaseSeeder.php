@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Series;
+use App\Models\Topic;
 
 class DatabaseSeeder extends Seeder
 {
@@ -26,6 +27,13 @@ class DatabaseSeeder extends Seeder
         foreach($series as $item) {
             Series::create([
                 'name' => $item,
+            ]);
+        }
+
+        $topics = ['Eloquent', 'Validation', 'Authentication', 'Testing', 'Refactoring'];
+        foreach($topics as $topic) {
+            Topic::create([
+                'name' => $topic,
             ]);
         }
     }
