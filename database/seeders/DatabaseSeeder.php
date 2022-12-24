@@ -6,6 +6,9 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Series;
 use App\Models\Topic;
+use App\Models\Platform;
+use App\Models\User;
+use App\Models\Course;
 
 class DatabaseSeeder extends Seeder
 {
@@ -36,5 +39,18 @@ class DatabaseSeeder extends Seeder
                 'name' => $topic,
             ]);
         }
+
+        $platforms = ['Laracasts', 'Youtube', 'Larajobs', 'Laravel NEws', 'Laracasts Forum'];
+        foreach($platforms as $item) {
+            Platform::create([
+                'name' => $item,
+            ]);
+        }
+
+        // create 50 users
+        User::factory(50)->create();
+
+        // create 10 courses
+        Course::factory(100)->create();
     }
 }

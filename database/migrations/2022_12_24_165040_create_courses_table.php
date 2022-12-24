@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('year');
             $table->float('price')->default(0.00);
             $table->string('image', 255)->nullable();
-            $table->text('content');
+            $table->text('description');
             $table->text('link');
             $table->unsignedBigInteger('submitted_by')->nullable();
             $table->unsignedBigInteger('duration');
