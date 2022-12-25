@@ -9,6 +9,7 @@ use App\Models\Topic;
 use App\Models\Platform;
 use App\Models\User;
 use App\Models\Course;
+use App\Models\Author;
 
 class DatabaseSeeder extends Seeder
 {
@@ -47,10 +48,36 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        $authors = ['Zahid Hasan', 'Another Name', 'Larajobs'];
+        foreach($authors as $item) {
+            Author::create([
+                'name' => $item,
+            ]);
+        }
+
         // create 50 users
         User::factory(50)->create();
 
         // create 10 courses
         Course::factory(100)->create();
+
+        // multiple relation
+        // $courses = Course::all();
+        // foreach($courses as $course) {
+        //     $loop = rand(1, 5);
+        //     for($i = 0; $i < $loop; $i++) {
+        //         $random_topic_id = Topic::all()->random()->id;
+        //         if($course->topics->contains($random_topic_id)) {
+        //             $course->topics()->attach($random_topic_id);
+        //         }
+        //     }
+        // }
+
+        $courses = Course::all();
+        foreach($courses as $course) {
+            $topics = Topic::all()->random(rand(1, 5))->pluck('id')->toArray();
+            $course->topics()->attach($topics);
+        }
+
     }
 }
