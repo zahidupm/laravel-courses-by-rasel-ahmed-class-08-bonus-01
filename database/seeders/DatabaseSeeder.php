@@ -77,6 +77,9 @@ class DatabaseSeeder extends Seeder
         foreach($courses as $course) {
             $topics = Topic::all()->random(rand(1, 5))->pluck('id')->toArray();
             $course->topics()->attach($topics);
+
+            $authors = Author::all()->random(rand(1, 3))->pluck('id')->toArray();
+            $course->authors()->attach($authors);
         }
 
     }
